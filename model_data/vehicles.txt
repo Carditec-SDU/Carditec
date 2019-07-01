@@ -1,0 +1,17 @@
+Bus
+Microbus
+MiniVan
+Sedan
+SUV
+Truck
+Bicycle
+DoubleDeck
+Electromobile
+FireTruck
+Motorcycle
+Motorhome
+PoliceCar
+RacingCar
+SchoolBus
+Tricycle
+
