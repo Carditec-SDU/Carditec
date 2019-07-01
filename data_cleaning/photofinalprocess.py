@@ -1,10 +1,12 @@
 import cv2
 
 import numpy as np
-address = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\BITVehicle_Dataset\\"
-saveaddress = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\NewNewBITVehicle_Dataset\\"
+address = "/home/yingbing/data/7_1/Truck/"
+saveaddress = "/home/yingbing/data/Adj/"
 
-times = 30
+times = 1298
+base = 20583
+
 def hisEqulColor(img):
     ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
     channels = cv2.split(ycrcb)
@@ -17,8 +19,13 @@ def hisEqulColor(img):
 
     return img
 
-for i in range(1,times+1):
-    img = cv2.imread(address+str(i)+".jpg")
+f = open(address+"index", "r")
+imgs = f.read()
+imgs = imgs.split('\n')
+
+for i in range(0,times):
+    img = cv2.imread( address + imgs[i])
     resizeimg = cv2.resize(img, dsize=(416, 416))
     equimg = hisEqulColor(resizeimg)
-    cv2.imwrite(saveaddress + str(i) + ".jpg", img, [int(cv2.IMWRITE_JPEG_QUALITY), 50])
+    cv2.imwrite(saveaddress + str(base+i) + ".jpg", equimg, [int(cv2.IMWRITE_JPEG_QUALITY), 50])
+

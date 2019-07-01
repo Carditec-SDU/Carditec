@@ -1,22 +1,29 @@
 import pandas as pd
 import cv2
-times = 9850
-data_frame=pd.read_excel('C:\\Users\\shiraz\\Documents\\Tencent Files\\912751642\\FileRecv\\车辆标记信息.xlsx',skiprows=None)
-data_txt = open("newdata.txt","a+")
-address = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\BITVehicle_Dataset\\"
+times = 21880
+ori_txt = open('/home/yingbing/dl/keras-yolo3/model_data/annot_new.txt'，'r')
+data_txt = open("labelscaledata.txt","w")
+address = "/home/yingbing/data/Ori"
 x = 416
 y = 416
 
 
 
-print(data_frame.loc[1]["imgnumber"].astype("str"))
+#print(data_frame.loc[1]["imgnumber"].astype("str"))
 
-for i in range(1,times+1):
+for i in range(0,times):
     img = cv2.imread(address + str(i) + ".jpg")
     x_before = img.shape[1]
     y_before = img.shape[0]
     x_scale = x_before/x
     y_scale = y_before/y
+    ori_line = ori_txt.readline()
+    blank_line = ori_line.strip("\n")
+    for k in blank_line:
+        comma_line = blank_line[k+1].strip(",") 
+        
+
+
     if(i == times):
         a = data_frame.loc[i-1]
         line = "./data/" + data_frame.loc[i-1]["imgnumber"].astype("str") + ".jpg" + " " + (
