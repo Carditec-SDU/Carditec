@@ -22,7 +22,7 @@ for item in annotation:
 for item in annotationList:
     (temp1, temp2) = os.path.splitext(item)
     annotationnameList.append(temp1)
-    
+
     for item1 in imgname1:
         if(temp1 == item1):
             copyfile(address1+temp1+".xml", address+"tricycle\\"+temp1+".xml")
