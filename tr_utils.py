@@ -114,7 +114,7 @@ def my_data_generator(annotation_lines, batch_size, input_shape, anchors, num_cl
     '''data generator for fit_generator'''
     n = len(annotation_lines)
     i = 0
-    file = h5.File('./data/Apr_26.h5', 'r')
+    file = h5.File('./data/July_2nd.h5', 'r')
     while True:
         image_data = list()
         box_data = list()
@@ -129,7 +129,7 @@ def my_data_generator(annotation_lines, batch_size, input_shape, anchors, num_cl
             image_data.append(file[str(line[0].split('/')[-1][0:-4])][:,:].reshape(1,416,416,3)/255)
             
             box = np.array([np.array(list(map(int,box.split(',')))) for box in line[1:]])
-            bbb = np.zeros((20,5))
+            bbb = np.zeros((40,5))
             if len(box)>0:
                 bbb[:len(box)] = box
             box_data.append(bbb)
@@ -146,5 +146,8 @@ def my_data_generator(annotation_lines, batch_size, input_shape, anchors, num_cl
         im = np.array(image_data).reshape((batch_size,416,416,3))
         # print(image_data.shape)
         box_data = np.array(box_data)
+        # try:
         y_true = preprocess_true_boxes(box_data, input_shape, anchors, num_classes)
+        # except:
+            # print(box_data)
         yield [im, *y_true], np.zeros(batch_size)

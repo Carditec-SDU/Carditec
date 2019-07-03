@@ -20,8 +20,9 @@ from keras.utils import multi_gpu_model
 
 class YOLO(object):
     _defaults = {
-        "model_path": './logs/003/trained_weights_final_24_1.h5',
-        "anchors_path": 'model_data/yolo_anchors.txt',
+        "model_path": './weights/ep020-loss5.858-val_loss6.455.h5',
+        # "model_path": './model_data/yolo_weights.h5',
+        "anchors_path": 'model_data/my_anchors.txt',
         "classes_path": 'model_data/vehicles.txt',
         "score" : 0.25,
         "iou" : 0.35,
@@ -68,6 +69,7 @@ class YOLO(object):
         is_tiny_version = num_anchors==6 # default setting
         try:
             self.yolo_model = load_model(model_path, compile=False)
+            # self.yolo_model = load_model(model_path, compile=True)
         except:
             self.yolo_model = tiny_yolo_body(Input(shape=(None,None,3)), num_anchors//2, num_classes) \
                 if is_tiny_version else yolo_body(Input(shape=(None,None,3)), num_anchors//3, num_classes)
@@ -76,6 +78,8 @@ class YOLO(object):
             assert self.yolo_model.layers[-1].output_shape[-1] == \
                 num_anchors/len(self.yolo_model.output) * (num_classes + 5), \
                 'Mismatch between model and given anchor and class sizes'
+        # self.yolo_model = create_model((416, 416), self.anchors, 16,
+        #     weights_path='./weights/ep020-loss5.858-val_loss6.455.h5')
 
         # print('{} model, anchors, and classes loaded.'.format(model_path))
 

@@ -294,7 +294,18 @@ def preprocess_true_boxes(true_boxes, input_shape, anchors, num_classes):
                     j = np.floor(true_boxes[b,t,1]*grid_shapes[l][0]).astype('int32')
                     k = anchor_mask[l].index(n)
                     c = true_boxes[b,t, 4].astype('int32')
+                    # print(b, j, i, k, t)
+                    # try:
                     y_true[l][b, j, i, k, 0:4] = true_boxes[b,t, 0:4]
+                    # except:
+                        # print(b, j, i, k, t)
+                        # print(input_shape)
+                        # print(true_boxes.shape)
+                        # print(y_true[l].shape)
+                        # print()
+                        # print(true_boxes[b,t,0])
+                        # print(true_boxes[b,t,1])
+                       
                     y_true[l][b, j, i, k, 4] = 1
                     y_true[l][b, j, i, k, 5+c] = 1
 
@@ -380,6 +391,11 @@ def yolo_loss(args, anchors, num_classes, ignore_thresh=.5, print_loss=False):
         raw_true_xy = y_true[l][..., :2]*grid_shapes[l][::-1] - grid
         raw_true_wh = K.log(y_true[l][..., 2:4] / anchors[anchor_mask[l]] * input_shape[::-1])
         raw_true_wh = K.switch(object_mask, raw_true_wh, K.zeros_like(raw_true_wh)) # avoid log(0)=-inf
+        
+        # filter out inf/nan values encountered here:
+        raw_true_wh = K.switch(tf.is_inf(raw_true_wh), raw_true_wh, K.zeros_like(raw_true_wh)) 
+        raw_true_wh = K.switch(tf.is_nan(raw_true_wh), raw_true_wh, K.zeros_like(raw_true_wh))
+        
         box_loss_scale = 2 - y_true[l][...,2:3]*y_true[l][...,3:4]
 
         # Find ignore mask, iterate over each of batch.
