@@ -6,6 +6,7 @@ import numpy as np
 testaddress = "C:\\Users\\shiraz\\Pictures\\testimg\\"
 savetestaddress = "C:\\Users\\shiraz\\Pictures\\testimgdone\\"
 times = 30
+
 def hisEqulColor(img):
     ycrcb = cv2.cvtColor(img, cv2.COLOR_BGR2YCR_CB)
     channels = cv2.split(ycrcb)

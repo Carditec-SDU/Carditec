@@ -1,9 +1,9 @@
 
 import cv2
-times = 21880
-ori_txt = open('/home/yingbing/dl/keras-yolo3/model_data/annot_new.txt','r')
-data_txt = open("labelscaledata.txt","w")
-address = "/home/yingbing/data/Ori/"
+times = 805
+ori_txt = open('/home/yingbing/data/sdata/annot.txt','r')
+data_txt = open("/home/yingbing/data/sdata_416/annot_416.txt","w")
+address = "/home/yingbing/data/sdata/"
 x = 416
 y = 416
 
@@ -18,18 +18,22 @@ for i in range(1,times+1):
     file_name = blank_line[0].split('/')[-1]
     file_name = file_name.split('.')[0]
 
+    # try:
+    #     img = cv2.imread(address + file_name + ".JPEG")
+    #     x_before = img.shape[1]
+    #     y_before = img.shape[0]
+    #     x_scale = x_before/x
+    #     y_scale = y_before/y
+    # except:
+    img = cv2.imread(address + file_name + ".jpg")
     try:
-        img = cv2.imread(address + file_name + ".JPEG")
         x_before = img.shape[1]
         y_before = img.shape[0]
         x_scale = x_before/x
         y_scale = y_before/y
     except:
-        img = cv2.imread(address + file_name + ".jpg")
-        x_before = img.shape[1]
-        y_before = img.shape[0]
-        x_scale = x_before/x
-        y_scale = y_before/y
+        print(file_name)
+        continue
 
     for k in range(1,len(blank_line)):
         forcomma_line = blank_line[k]

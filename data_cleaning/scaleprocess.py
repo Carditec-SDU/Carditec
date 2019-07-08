@@ -1,9 +1,14 @@
 import cv2
 
 import numpy as np
-address = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\NewNewBITVehicle_Dataset\\"
-saveaddress = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\NewNewNewBITVehicle_Dataset\\"
-times = 9850
+
+# address = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\NewNewBITVehicle_Dataset\\"
+# saveaddress = "D:\\BaiduNetdiskDownload\\BITVehicle_Dataset (2)\\NewNewNewBITVehicle_Dataset\\"
+
+address = "/home/yingbing/data/sdata/"
+saveaddress = "/home/yingbing/data/sdata_416/"
+
+times = 805
 
 
 for i in range(1,times+1):
