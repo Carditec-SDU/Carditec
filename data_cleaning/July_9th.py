@@ -68,7 +68,7 @@ for line in lines:
         source_file = "/home/yingbing/data/Adjresize/" + str(name) + ".jpg"
         target_file = "/home/yingbing/data/test/" + str(name) + ".jpg"
 
-        copyfile(source_file, target_file)
+        # copyfile(source_file, target_file)
 
         boxes = contents[1:]
         print(boxes)
@@ -83,17 +83,19 @@ for line in lines:
             except:
                 continue
 
-            if cls==3:
-                box_attrs[4] == '1'
+            if cls==0:
+                new_line += " "+box_attrs[0]+","+box_attrs[1]+","+box_attrs[2]+","+box_attrs[3]+","+"0"
+            elif cls==3:
+                # box_attrs[4] == '1'
                 new_line += " "+box_attrs[0]+","+box_attrs[1]+","+box_attrs[2]+","+box_attrs[3]+","+"1"
             elif cls==4:
-                box_attrs[4] == '2'
+                # box_attrs[4] == '2'
                 new_line += " "+box_attrs[0]+","+box_attrs[1]+","+box_attrs[2]+","+box_attrs[3]+","+"2"
             elif cls==5:
-                box_attrs[4] == '3'
+                # box_attrs[4] == '3'
                 new_line += " "+box_attrs[0]+","+box_attrs[1]+","+box_attrs[2]+","+box_attrs[3]+","+"3"
             elif cls==6:
-                box_attrs[4] == '4'
+                # box_attrs[4] == '4'
                 # print(box)
                 new_line += " "+box_attrs[0]+","+box_attrs[1]+","+box_attrs[2]+","+box_attrs[3]+","+"4"
             elif cls==8:
