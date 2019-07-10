@@ -1,0 +1,66 @@
+数据集介绍
+
+
+第一增量数据集　DataSet1:
+-  1-9850 BITVehicle_Dataset
+6 classes:
+bus         558,  
+microbus    883, 
+minivan     476, 
+sedan       5921, 
+SUV         1392,  
+truck       823
+
+
+第二增量数据集　DataSet2:
+－　１－9850　BITVehicle_Dataset
+－　9851－21880 　ImageNet_Dataset
+16　classes:
+bus             1796, 
+microbus        883,
+minivan         476, 
+sedan           5921, 
+SUV             1392, 
+truck           2268, 
+bicycle         918, 
+doubledeck      654, 
+electromobile   2474, 
+firetruck       1531, 
+motorcycle      547, 
+motorhome       1531, 
+policecar       350, 
+racingcar       2429, 
+schoolbus       1789, 
+tricycle        465
+
+
+第三增量数据集　Dataset3:
+-  1-9850　BITVehicle_Dataset
+－　9851－18308　ImageNet_Dataset　
+13 classes:
+bus             1796, 
+microbus        883,
+minivan         476, 
+sedan           5921, 
+SUV             1392, 
+truck           2268, 
+bicycle         918, 
+doubledeck      654, 
+electromobile   2474, 
+firetruck       1531, 
+motorcycle      547, 
+motorhome       1531,  
+schoolbus       1789, 
+
+
+第三增量数据集　Dataset4:
+-  1-805   SDU_Campus_Dataset
+-  806-1365     Dataset3
+6 classes:
+Bus             144, 
+Sedan           633, 
+SUV             419, 
+Truck           152, 
+Bicycle         156, 
+electromobile   287
+
